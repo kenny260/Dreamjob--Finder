@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search Portal - Find Your Dream Career</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <div class="logo-circle">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h1>Job Search Portal</h1>
+                <p>Discover opportunities across the globe</p>
+            </div>
+            <div class="login-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="demo" autocomplete="username">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="demo123" autocomplete="current-password">
+                </div>
+                <div id="loginError" class="error-message"></div>
+                <button id="loginBtn" class="btn-primary">
+                    <span>Sign In</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div class="demo-credentials">
+                <p><strong>Demo Credentials:</strong></p>
+                <p>Username: <code>demo</code></p>
+                <p>Password: <code>demo123</code></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="main-app hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h1>Job Search Portal</h1>
+                </div>
+                <div class="header-right">
+                    <button id="settingsBtn" class="icon-btn" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button id="logoutBtn" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Search Section -->
+                <div class="search-section">
+                    <h2 class="section-title">Find Your Next Opportunity</h2>
+                    <div class="search-grid">
+                        <div class="input-group">
+                            <label for="searchTerm">
+                                <i class="fas fa-search"></i> Job Title or Keyword
+                            </label>
+                            <input type="text" id="searchTerm" placeholder="e.g. Software Engineer, UX Designer">
+                        </div>
+                        <div class="input-group">
+                            <label for="location">
+                                <i class="fas fa-map-marker-alt"></i> Location
+                            </label>
+                            <input type="text" id="location" placeholder="e.g. New York, Remote">
+                        </div>
+                    </div>
+
+                    <!-- Filter Toggle -->
+                    <div class="filter-actions">
+                        <button id="filterToggle" class="btn-filter">
+                            <i class="fas fa-sliders-h"></i>
+                            <span>Advanced Filters</span>
+                        </button>
+                        <button id="searchBtn" class="btn-search">
+                            <i class="fas fa-search"></i>
+                            <span>Search Jobs</span>
+                        </button>
+                    </div>
+
+                    <!-- Advanced Filters -->
+                    <div id="advancedFilters" class="advanced-filters hidden">
+                        <div class="filters-grid">
+                            <div class="input-group">
+                                <label for="jobType">
+                                    <i class="fas fa-briefcase"></i> Job Type
+                                </label>
+                                <select id="jobType">
+                                    <option value="fulltime">Full-time</option>
+                                    <option value="parttime">Part-time</option>
+                                    <option value="contract">Contract</option>
+                                    <option value="internship">Internship</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="distance">
+                                    <i class="fas fa-location-arrow"></i> Distance (miles)
+                                </label>
+                                <input type="number" id="distance" value="50" min="1" max="100">
+                            </div>
+                            <div class="input-group">
+                                <label for="resultsWanted">
+                                    <i class="fas fa-list"></i> Number of Results
+                                </label>
+                                <input type="number" id="resultsWanted" value="10" min="1" max="50">
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="isRemote">
+                                <label for="isRemote">Remote Only</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loadingState" class="loading-state hidden">
+                    <div class="spinner"></div>
+                    <p>Searching for jobs...</p>
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="error-banner hidden"></div>
+
+                <!-- Results Section -->
+                <div id="resultsSection" class="results-section hidden">
+                    <h2 class="results-title">
+                        <span id="resultsCount">0</span> Jobs Found
+                    </h2>
+                    <div id="jobsList" class="jobs-list"></div>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state">
+                    <i class="fas fa-search"></i>
+                    <h3>Start Your Job Search</h3>
+                    <p>Enter a job title and location to discover opportunities</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>
+                    <i class="fas fa-key"></i> API Settings
+                </h2>
+                <button id="closeModal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="apiKeyInput">RapidAPI Key</label>
+                    <input type="text" id="apiKeyInput" placeholder="Enter your API key">
+                    <small>Get your API key from <a href="https://rapidapi.com" target="_blank">RapidAPI</a></small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="updateApiKey" class="btn-primary">
+                    <i class="fas fa-save"></i>
+                    <span>Update Key</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
