@@ -1,0 +1,72 @@
+# API Keys and Sensitive Information
+config.js
+*.key
+*.pem
+.env
+.env.local
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+*.bak
+*.cache
+
+# Node Modules (if you add Node.js later)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build Files
+dist/
+build/
+*.min.js
+*.min.css
+
+# Backup Files
+*.backup
+*_backup
+backup/
+
+# Test Files
+test/
+tests/
+*.test.js
+coverage/
+
+# Documentation Drafts
+docs/drafts/
+*.draft.md
+
+# Local Configuration
+local_config.js
+config.local.js
