@@ -1,5 +1,4 @@
 # API Keys and Sensitive Information
-config.js
 *.key
 *.pem
 .env
