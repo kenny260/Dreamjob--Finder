@@ -1,4 +1,4 @@
-# Dreamjob--Fiinder
+# Dreamjob--Finder
 # Job Search Portal
 
 A sleek web application that searches for jobs across LinkedIn, Indeed, ZipRecruiter, and Glassdoor all at once.
